@@ -77,29 +77,35 @@
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         @keyframes slideIn {
-            from {
-                transform: translateY(50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
     </style>
     <script>
+        // Liste des codes générés
+        const codes = [
+            "5871", "1258", "9632", "7410", "8520", "3698", "1470", "2581",
+            "9631", "7412", "8523", "3690", "1472", "2584", "9635", "7418",
+            "8527", "3692", "1479", "2587"
+        ];
+
+        // Date limite d'accès
+        const dateFin = new Date('2025-11-21T16:00:00');
+
         function checkCode() {
-            const codeInput = document.getElementById('codeInput').value;
-            if (codeInput === '5871') {
+            const maintenant = new Date();
+            if (maintenant > dateFin) {
+                alert("Accès expiré. Cette application n'est plus disponible après le 21/11/2025 16h.");
+                return;
+            }
+
+            const codeInput = document.getElementById('codeInput').value.trim();
+            if (codes.includes(codeInput)) {
                 alert('Code accepté! Bienvenue sur Marloay Premium.');
                 document.getElementById('mainContent').style.display = 'block';
                 document.getElementById('formContainer').style.display = 'none';
@@ -113,14 +119,12 @@
     <div class="container">
         <h1 class="title">Bienvenue sur Marloay Premium</h1>
 
-        <!-- Formulaire d'accès -->
         <div id="formContainer" class="form">
             <p>Veuillez entrer le code d'accès :</p>
             <input type="text" id="codeInput" placeholder="Entrez le code...">
             <button onclick="checkCode()">Entrer</button>
         </div>
 
-        <!-- Contenu principal caché -->
         <div id="mainContent" style="display: none;">
             <h2>🎥 Vidéos Exclusives</h2>
             <div class="videos">
